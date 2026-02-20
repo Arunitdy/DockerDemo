@@ -1,0 +1,223 @@
+Docker + Spring Boot Demo 
+
+This project demonstrates how to:
+
+Create a simple Spring Boot application
+
+Build it using Maven
+
+Containerize it using Docker
+
+Push it to Docker Hub
+
+Run it on another machine
+
+ Prerequisites
+
+Make sure you have installed:
+
+Java 21
+
+Maven
+
+Docker
+
+Verify installations:
+
+java -version
+mvn -version
+docker --version
+
+ Step 1 – Create Spring Boot Project
+
+Generate a Spring Boot project using:
+
+Maven
+
+Java 21
+
+Spring Web dependency
+
+Project structure:
+
+demo
+ ├── src
+ ├── pom.xml
+ └── Dockerfile
+
+ Step 2 – Create Simple REST Controller
+
+Create:
+
+src/main/java/com/example/demo/HelloController.java
+
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/")
+public class HelloController {
+
+    @GetMapping
+    public String home() {
+        return "Hello Docker + Spring Boot 🚀";
+    }
+}
+
+ Step 3 – Run Application Locally (Without Docker)
+mvn spring-boot:run
+
+
+Open browser:
+
+http://localhost:8080
+
+
+Expected output:
+
+Hello Docker + Spring Boot 🚀
+
+
+Stop application:
+
+CTRL + C
+
+ Step 4 – Build JAR File
+mvn clean package
+
+
+After build, check:
+
+target/demo-0.0.1-SNAPSHOT.jar
+
+
+Test JAR:
+
+java -jar target/demo-0.0.1-SNAPSHOT.jar
+
+
+Open:
+
+http://localhost:8080
+
+
+Stop with:
+
+CTRL + C
+
+ Step 5 – Create Dockerfile
+
+Create a file named Dockerfile in project root:
+
+FROM eclipse-temurin:21-jdk-jammy
+WORKDIR /app
+COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","app.jar"]
+
+ Step 6 – Build Docker Image
+docker build -t demo-app .
+
+
+Verify:
+
+docker images
+
+
+You should see:
+
+demo-app   latest
+
+ Step 7 – Run Docker Container
+docker run -p 8080:8080 demo-app
+
+
+Open:
+
+http://localhost:8080
+
+
+To run in background:
+
+docker run -d -p 8080:8080 demo-app
+
+
+Check running containers:
+
+docker ps
+
+
+Stop container:
+
+docker stop <container_id>
+
+ Step 8 – Push Image to Docker Hub
+1️ Login
+docker login
+
+2️ Tag Image
+
+Replace yourusername with your Docker Hub username.
+
+docker tag demo-app yourusername/demo-app:1.0
+
+3️ Push
+docker push yourusername/demo-app:1.0
+
+
+Verify on Docker Hub website.
+
+ Step 9 – Run on Another Machine
+
+On another system:
+
+docker login
+docker pull yourusername/demo-app:1.0
+docker run -p 8080:8080 yourusername/demo-app:1.0
+
+
+Open:
+
+http://localhost:8080
+
+⚠ Common Issues & Fixes
+Port Already Allocated
+
+If you see:
+
+Bind for 0.0.0.0:8080 failed
+
+
+Use another port:
+
+docker run -p 9090:8080 yourusername/demo-app:1.0
+
+
+Then open:
+
+http://localhost:9090
+
+Image Not Found
+
+If:
+
+docker pull yourusername/demo-app:1.0
+not found
+
+
+Make sure you pushed the image correctly:
+
+docker push yourusername/demo-app:1.0
+
+ What This Project Demonstrates
+
+Spring Boot REST API
+
+Maven build lifecycle
+
+Docker image creation
+
+Container networking
+
+Image distribution using Docker Hub
