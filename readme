@@ -1,5 +1,5 @@
 ========================================================
-🚀 Docker + Spring Boot Demo
+ Docker + Spring Boot Demo
 ========================================================
 
 This project demonstrates how to:
@@ -12,7 +12,7 @@ This project demonstrates how to:
 
 
 ========================================================
-📌 Prerequisites
+ Prerequisites
 ========================================================
 
 Install the following tools:
@@ -29,7 +29,7 @@ Verify installation:
 
 
 ========================================================
-🏗 Step 1 – Create Spring Boot Project
+ Step 1 – Create Spring Boot Project
 ========================================================
 
 Generate a Spring Boot project using:
@@ -47,7 +47,7 @@ Project structure:
 
 
 ========================================================
-🧩 Step 2 – Create Simple REST Controller
+ Step 2 – Create Simple REST Controller
 ========================================================
 
 Create file:
@@ -72,7 +72,7 @@ Add the following code:
 
 
 ========================================================
-▶ Step 3 – Run Application Locally (Without Docker)
+ Step 3 – Run Application Locally (Without Docker)
 ========================================================
 
 Run:
@@ -92,8 +92,8 @@ Stop application:
     CTRL + C
 
 
-========================================================
-📦 Step 4 – Build JAR File
+=======================================================
+ Step 4 – Build JAR File
 ========================================================
 
 Build project:
@@ -118,7 +118,7 @@ Stop:
 
 
 ========================================================
-🐳 Step 5 – Create Dockerfile
+ Step 5 – Create Dockerfile
 ========================================================
 
 Create file named: Dockerfile
@@ -133,7 +133,7 @@ Add:
 
 
 ========================================================
-🏗 Step 6 – Build Docker Image
+ Step 6 – Build Docker Image
 ========================================================
 
 Build image:
@@ -150,7 +150,7 @@ You should see:
 
 
 ========================================================
-▶ Step 7 – Run Docker Container
+ Step 7 – Run Docker Container
 ========================================================
 
 Run container:
@@ -175,7 +175,7 @@ Stop container:
 
 
 ========================================================
-☁ Step 8 – Push Image to Docker Hub
+ Step 8 – Push Image to Docker Hub
 ========================================================
 
 1) Login:
@@ -194,7 +194,7 @@ Verify repository on Docker Hub website.
 
 
 ========================================================
-📥 Step 9 – Run on Another Machine
+ Step 9 – Run on Another Machine
 ========================================================
 
 On another system:
@@ -209,7 +209,7 @@ Open:
 
 
 ========================================================
-⚠ Common Issues & Fixes
+ Common Issues & Fixes
 ========================================================
 
 Port Already Allocated:
@@ -237,7 +237,7 @@ Push again:
 
 
 ========================================================
-🎯 What This Project Demonstrates
+ What This Project Demonstrates
 ========================================================
 
 - Spring Boot REST API
