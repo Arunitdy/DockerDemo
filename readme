@@ -1,7 +1,7 @@
 ================================================================================
 PROJECT:        Docker + Spring Boot Demo Application
 DESCRIPTION:    REST API built with Spring Boot and containerized using Docker
-AUTHOR:         Your Name
+
 ================================================================================
 
 
