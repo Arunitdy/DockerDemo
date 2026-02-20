@@ -1,129 +1,63 @@
-========================================================
- Docker + Spring Boot Demo
-========================================================
-
-This project demonstrates how to:
-
-- Build a simple Spring Boot REST API
-- Package it using Maven
-- Containerize it with Docker
-- Push the image to Docker Hub
-- Run it on another machine
+================================================================================
+PROJECT:        Docker + Spring Boot Demo Application
+DESCRIPTION:    REST API built with Spring Boot and containerized using Docker
+AUTHOR:         Your Name
+================================================================================
 
 
-========================================================
- Prerequisites
-========================================================
+SECTION: PREREQUISITES
+--------------------------------------------------------------------------------
+REQUIRED:
+    - Java 21
+    - Maven
+    - Docker Desktop
 
-Install the following tools:
-
-- Java 21
-- Maven
-- Docker
-
-Verify installation:
-
+VERIFY INSTALLATION:
     java -version
     mvn -version
     docker --version
 
 
-========================================================
- Step 1 – Create Spring Boot Project
-========================================================
-
-Generate a Spring Boot project using:
-
-- Maven
-- Java 21
-- Spring Web dependency
-
-Project structure:
-
-    demo
-     ├── src
-     ├── pom.xml
-     └── Dockerfile
+SECTION: PROJECT STRUCTURE
+--------------------------------------------------------------------------------
+demo/
+│
+├── src/
+├── target/
+├── pom.xml
+└── Dockerfile
 
 
-========================================================
- Step 2 – Create Simple REST Controller
-========================================================
-
-Create file:
-
-    src/main/java/com/example/demo/HelloController.java
-
-Add the following code:
-
-    package com.example.demo;
-
-    import org.springframework.web.bind.annotation.*;
-
-    @RestController
-    @RequestMapping("/")
-    public class HelloController {
-
-        @GetMapping
-        public String home() {
-            return "Hello Docker + Spring Boot 🚀";
-        }
-    }
-
-
-========================================================
- Step 3 – Run Application Locally (Without Docker)
-========================================================
-
-Run:
-
+SECTION: STEP 1 - RUN APPLICATION LOCALLY
+--------------------------------------------------------------------------------
+COMMAND:
     mvn spring-boot:run
 
-Open browser:
-
+ACCESS:
     http://localhost:8080
 
-Expected output:
-
-    Hello Docker + Spring Boot 🚀
-
-Stop application:
-
+STOP:
     CTRL + C
 
 
-=======================================================
- Step 4 – Build JAR File
-========================================================
-
-Build project:
-
+SECTION: STEP 2 - BUILD JAR FILE
+--------------------------------------------------------------------------------
+COMMAND:
     mvn clean package
 
-Verify JAR exists:
-
+OUTPUT:
     target/demo-0.0.1-SNAPSHOT.jar
 
-Test JAR:
-
+TEST JAR:
     java -jar target/demo-0.0.1-SNAPSHOT.jar
 
-Open browser:
 
-    http://localhost:8080
+SECTION: STEP 3 - CREATE DOCKERFILE
+--------------------------------------------------------------------------------
+FILENAME:
+    Dockerfile
 
-Stop:
-
-    CTRL + C
-
-
-========================================================
- Step 5 – Create Dockerfile
-========================================================
-
-Create file named: Dockerfile
-
-Add:
+CONTENT:
 
     FROM eclipse-temurin:21-jdk-jammy
     WORKDIR /app
@@ -132,118 +66,82 @@ Add:
     ENTRYPOINT ["java","-jar","app.jar"]
 
 
-========================================================
- Step 6 – Build Docker Image
-========================================================
-
-Build image:
-
+SECTION: STEP 4 - BUILD DOCKER IMAGE
+--------------------------------------------------------------------------------
+COMMAND:
     docker build -t demo-app .
 
-Verify image:
-
+VERIFY:
     docker images
 
-You should see:
 
-    demo-app    latest
-
-
-========================================================
- Step 7 – Run Docker Container
-========================================================
-
-Run container:
-
+SECTION: STEP 5 - RUN DOCKER CONTAINER
+--------------------------------------------------------------------------------
+RUN (FOREGROUND):
     docker run -p 8080:8080 demo-app
 
-Open:
-
-    http://localhost:8080
-
-Run in background:
-
+RUN (DETACHED):
     docker run -d -p 8080:8080 demo-app
 
-Check running containers:
-
+CHECK RUNNING CONTAINERS:
     docker ps
 
-Stop container:
-
+STOP CONTAINER:
     docker stop <container_id>
 
-
-========================================================
- Step 8 – Push Image to Docker Hub
-========================================================
-
-1) Login:
-
-    docker login
-
-2) Tag image:
-
-    docker tag demo-app yourusername/demo-app:1.0
-
-3) Push image:
-
-    docker push yourusername/demo-app:1.0
-
-Verify repository on Docker Hub website.
-
-
-========================================================
- Step 9 – Run on Another Machine
-========================================================
-
-On another system:
-
-    docker login
-    docker pull yourusername/demo-app:1.0
-    docker run -p 8080:8080 yourusername/demo-app:1.0
-
-Open:
-
+ACCESS:
     http://localhost:8080
 
 
-========================================================
- Common Issues & Fixes
-========================================================
+SECTION: STEP 6 - PUSH IMAGE TO DOCKER HUB
+--------------------------------------------------------------------------------
+LOGIN:
+    docker login
 
-Port Already Allocated:
+TAG IMAGE:
+    docker tag demo-app yourusername/demo-app:1.0
 
-If you see:
-    Bind for 0.0.0.0:8080 failed
+PUSH IMAGE:
+    docker push yourusername/demo-app:1.0
 
-Run using different port:
-
-    docker run -p 9090:8080 yourusername/demo-app:1.0
-
-Open:
-    http://localhost:9090
+VERIFY:
+    Check repository on Docker Hub
 
 
-Image Not Found:
+SECTION: STEP 7 - RUN ON ANOTHER MACHINE
+--------------------------------------------------------------------------------
+LOGIN:
+    docker login
 
-If:
+PULL IMAGE:
     docker pull yourusername/demo-app:1.0
-    not found
 
-Push again:
+RUN:
+    docker run -p 8080:8080 yourusername/demo-app:1.0
 
+ACCESS:
+    http://localhost:8080
+
+
+SECTION: TROUBLESHOOTING
+--------------------------------------------------------------------------------
+ERROR: PORT ALREADY IN USE
+SOLUTION:
+    docker run -p 9090:8080 yourusername/demo-app:1.0
+    Access via http://localhost:9090
+
+ERROR: IMAGE NOT FOUND
+SOLUTION:
     docker push yourusername/demo-app:1.0
 
 
-========================================================
- What This Project Demonstrates
-========================================================
-
-- Spring Boot REST API
-- Maven build lifecycle
-- Docker image creation
-- Container networking
-- Image distribution via Docker Hub
-
-========================================================
+================================================================================
+WORKFLOW SUMMARY
+--------------------------------------------------------------------------------
+1. DEVELOP      -> Spring Boot Application
+2. BUILD        -> mvn clean package
+3. CONTAINERIZE -> docker build
+4. RUN          -> docker run
+5. DISTRIBUTE   -> docker push
+6. DEPLOY       -> docker pull + docker run
+================================================================================
