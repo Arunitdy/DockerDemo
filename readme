@@ -4,14 +4,6 @@ DESCRIPTION:    REST API built with Spring Boot and containerized using Docker
 AUTHOR:         Your Name
 ================================================================================
 
-BADGES:
---------------------------------------------------------------------------------
-![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-brightgreen?style=for-the-badge&logo=springboot)
-![Maven](https://img.shields.io/badge/Maven-Build-red?style=for-the-badge&logo=apachemaven)
-![Docker](https://img.shields.io/badge/Docker-Containerized-blue?style=for-the-badge&logo=docker)
-
-================================================================================
 
 
 SECTION: PREREQUISITES
